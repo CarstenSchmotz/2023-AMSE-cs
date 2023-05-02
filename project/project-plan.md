@@ -17,8 +17,8 @@ Is the electric car raising the energy bills?
 
 ### Datasource1: car registration for cars with alternative motors in germany
 * Metadata URL: https://mobilithek.info/offers/573358160767496192
-* Data URL: https://www.kba.de/SharedDocs/Downloads/DE/Statistik/Fahrzeuge/FZ28/fz28_2022_09.xlsx?__blob=publicationFile&v=4 to do
-* Data Type: 
+* Data URL: https://www.kba.de/SharedDocs/Downloads/DE/Statistik/Fahrzeuge/FZ28/fz28_2022_09.xlsx?__blob=publicationFile&v=4 
+* Data Type: xlsx
 
 Short description.
 New car registration in the year 2022 with electric, h2m and Hybrid drives. 
@@ -27,8 +27,8 @@ The car owner, the type of car and the modell are listed in segments of the germ
 
 ### Datasource2: Engerie prize and Usage of household
 * Metadata URL: https://www.govdata.de/web/guest/suchen/-/details/strompreise-fur-haushalte-deutschland-jahrejahresverbrauchsklassen-preisbestandteile
-* Data URL:  https://www-genesis.destatis.de/genesis/downloads/00/tables/61243-0002_00.csv to do
-* Data Type: xlxs
+* Data URL:  https://www-genesis.destatis.de/genesis/downloads/00/tables/61243-0002_00.csv 
+* Data Type: CSV
 
 Short description.
 Electricity prices for households: Germany, years,annual consumption classes, price components
@@ -36,9 +36,6 @@ Electricity prices for households: Germany, years,annual consumption classes, pr
 
 ## Work Packages
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
-
-1. Example Issue [#1][i1]
-2. ...
 
 [i1]: https://github.com/jvalue/2023-amse-template/issues/1
 1. Automated data pipeline [#1][i1]
