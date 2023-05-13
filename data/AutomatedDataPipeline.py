@@ -1,6 +1,6 @@
 import pandas as pd
 
-downloadFiles = False
+downloadFiles = True
 
 storage_options = {'User-Agent': 'Mozilla/5.0'}
 
@@ -15,15 +15,21 @@ storage_options = {'User-Agent': 'Mozilla/5.0'}
 #df.columns.values[1] = 'lon'
 #df.columns.values[2] = 'speed2'
 
-#df.to_sql('carregistration', 'sqlite:///2023-amse-nb/data/CarRegistration.sqlite', if_exists='replace', index=False)
+#df.to_sql('carregistration', 'sqlite:///CarRegistration.sqlite', if_exists='replace', index=False)
 
 #print("First DONE ")
 
 if(downloadFiles):
-    df = pd.read_csv('https://www-genesis.destatis.de/genesis/downloads/00/tables/61243-0002_00.csv', sep=';')
+    df = pd.read_csv('https://www-genesis.destatis.de/genesis/downloads/00/tables/61243-0002_00.csv', sep=';', engine='python')#skiprows =[0,1,2,3,4,5])
+#usecols=['Strompreise für Haushalte: Deutschland', 'Jahre',
+#'Jahresverbrauchsklassen', 'Preisbestandteile',
+#'Durchschnittspreise für Strom und Gas'
+#,'Deutschland'])
 else:
-    df = pd.read_csv('C:/Users/Besitzer/Downloads/61243-0002_00.csv', sep=';',nrows=20)
-print('test')
-df.to_sql('prize', 'sqlite:///2023-amse-cs/data/Energyprize.sqlite', if_exists='replace', index=False)
+    df = pd.read_csv('/Users/carstenschmotz/Downloads/61243-0002_00.csv', sep=';', skiprows=[0,1,2,3,4,5])
+#/Users/carstenschmotz/Downloads/61243-0002_00.csv
+#/Users/carstenschmotz/Documents/GitHub/2023-AMSE-cs/data
+df.to_sql('prize', 'sqlite:///Energyprize.sqlite', if_exists='replace', index=False)
+#df.to_sql('prize', 'sqlite:///Users/carstenschmotz/Documents/GitHub/2023-AMSE-cs/data/prize.sqlite', if_exists='replace', index=False)
 
 print("Second DONE")
