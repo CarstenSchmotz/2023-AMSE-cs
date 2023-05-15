@@ -2,7 +2,6 @@ import pandas as pd
 
 downloadFiles = True
 
-storage_options = {'User-Agent': 'Mozilla/5.0'}
 
 #latitude,longitude,speed,shock_duration,shock_x_axis,x_axis,shock_y_axis,y_axis,shock_z_axis,z_axis,wagonID,delta_timestamp
 if(downloadFiles):
@@ -13,11 +12,11 @@ if(downloadFiles):
 else:
    df = pd.read_csv('C:/Users/nicol/Downloads/ShockData.csv', sep=',', nrows=15, usecols=["latitude", "longitude", "speed"])
 
-#df.columns.values[0] = 'lat'
-#df.columns.values[1] = 'lon'
-#df.columns.values[2] = 'speed2'
+#df.columns.values[1] = 'Monta'
+#df.columns.values[2] = 'Insgesamt'
+#df.columns.values[3] = ''
 
-df.to_sql('carregistration', 'sqlite:///CarRegistration.sqlite', if_exists='replace', index=False)
+df.to_sql('carregistration', 'sqlite:///data/CarRegistration.sqlite', if_exists='replace', index=False)
 
 print("First DONE ")
 
@@ -31,7 +30,6 @@ print("First DONE ")
  #   df = pd.read_csv('/Users/carstenschmotz/Downloads/61243-0002_00.csv', sep=';', skiprows=[0,1,2,3,4,5])
 #/Users/carstenschmotz/Downloads/61243-0002_00.csv
 #/Users/carstenschmotz/Documents/GitHub/2023-AMSE-cs/data
-#df.to_sql('prize', 'sqlite:///Energyprize.sqlite', if_exists='replace', index=False)
-#df.to_sql('prize', 'sqlite:///Users/carstenschmotz/Documents/GitHub/2023-AMSE-cs/data/prize.sqlite', if_exists='replace', index=False)
+#df.to_sql('prize', 'sqlite:///data/Energyprize.sqlite', if_exists='replace', index=False)
 
 print("Second DONE")
