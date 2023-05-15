@@ -10,7 +10,7 @@ if(downloadFiles):
 # >>> pd.read_excel('tmp.xlsx', index_col=0, comment='#')  #try this
  #use col machen und header entfernen
 else:
-   df = pd.read_csv('C:/Users/nicol/Downloads/ShockData.csv', sep=',', nrows=15, usecols=["latitude", "longitude", "speed"])
+   df = pd.read_excel('/Users/carstenschmotz/Downloads/fz28_2022_09.xlsx', sheet_name=4,header=[7,8,9,10,11] )
 
 #df.columns.values[1] = 'Monta'
 #df.columns.values[2] = 'Insgesamt'
@@ -20,16 +20,23 @@ df.to_sql('carregistration', 'sqlite:///data/CarRegistration.sqlite', if_exists=
 
 print("First DONE ")
 
-#if(downloadFiles):
- #   df = pd.read_csv('https://www-genesis.destatis.de/genesis/downloads/00/tables/61243-0002_00.csv', sep=';', engine='python')#skiprows =[0,1,2,3,4,5])
+if(downloadFiles):
+    df = pd.read_csv('https://www-genesis.destatis.de/genesis/downloads/00/tables/61243-0002_00.csv', sep=';', encoding="ISO-8859-1",skiprows =[0,1,2,3,4,5])
 #usecols=['Strompreise für Haushalte: Deutschland', 'Jahre',
 #'Jahresverbrauchsklassen', 'Preisbestandteile',
 #'Durchschnittspreise für Strom und Gas'
 #,'Deutschland'])
-#else:
- #   df = pd.read_csv('/Users/carstenschmotz/Downloads/61243-0002_00.csv', sep=';', skiprows=[0,1,2,3,4,5])
-#/Users/carstenschmotz/Downloads/61243-0002_00.csv
-#/Users/carstenschmotz/Documents/GitHub/2023-AMSE-cs/data
-#df.to_sql('prize', 'sqlite:///data/Energyprize.sqlite', if_exists='replace', index=False)
+else:
+
+    df = pd.read_csv('/Users/carstenschmotz/Downloads/61243-0002_00.csv', sep=';', skiprows=[0,1,2,3,4])
+
+
+df.columns.values[0] = 'Jahr'
+df.columns.values[1] = 'Verbrauchsklassen'
+df.columns.values[2] = 'Energie und Vertrieb'
+df.columns.values[1] = 'Haushalte'
+df.columns.values[2] = 'Insgesamt'
+
+df.to_sql('prize', 'sqlite:///data/Energyprize.sqlite', if_exists='replace', index=False)
 
 print("Second DONE")
