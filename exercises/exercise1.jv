@@ -1,29 +1,29 @@
-pipeline AirportPipeline {
+pipeline AirportsPipeline {
 
-	block AirportExtractor oftype HttpExtractor {
+	block AirportsExtractor oftype HttpExtractor {
 		url: "https://opendata.rhein-kreis-neuss.de/api/v2/catalog/datasets/rhein-kreis-neuss-flughafen-weltweit/exports/csv";
 	}
 
 	pipe {
-		from: AirportExtractor;
-		to: AirportTextFileInterpreter;
+		from: AirportsExtractor;
+		to: AirportsTextFileInterpreter;
 	}
 
-	block AirportTextFileInterpreter oftype TextFileInterpreter {
+	block AirportsTextFileInterpreter oftype TextFileInterpreter {
 
-	}
-
-	pipe {
-		from: AirportTextFileInterpreter;
-		to: AirportCSVInterpreter;
-	}
-
-	block AirportCSVInterpreter oftype CSVInterpreter {
-		enclosing: '"';
 	}
 
 	pipe {
-		from: AirportCSVInterpreter;
+		from: AirportsTextFileInterpreter;
+		to: AirportsCSVInterpreter;
+	}
+
+	block AirportsCSVInterpreter oftype CSVInterpreter {
+		delimiter: ';';
+	}
+
+	pipe {
+		from: AirportsCSVInterpreter;
 		to: NameHeaderWriter;
 	}
 
@@ -34,10 +34,10 @@ pipeline AirportPipeline {
 
 	pipe {
 	   	from: NameHeaderWriter;
-	   	to: AirportTableInterpreter;
+	   	to: AirportsTableInterpreter;
 	}
 
-	block AirportTableInterpreter oftype TableInterpreter {
+	block AirportsTableInterpreter oftype TableInterpreter {
 		header: true;
 		columns: [
 			"column_1" oftype integer,
@@ -46,22 +46,22 @@ pipeline AirportPipeline {
 			"column_4" oftype text,
 			"column_5" oftype text,
 			"column_6" oftype text,
-			"column_7" oftype integer,
-			"column_8" oftype integer,
-			"column_9" oftype integer,
-			"column_10" oftype decimal,
-			"column_11" oftype text,
-			"column_12" oftype text,
-			"geo_punkt" oftype decimal
+			//"column_7" oftype integer,
+			//"column_8" oftype integer,
+			//"column_9" oftype integer,
+			//"column_10" oftype decimal,
+			//"column_11" oftype text,
+			//"column_12" oftype text,
+			//"geo_punkt" oftype decimal
 		];
 	}
 
 	pipe {
-		from: AirportTableInterpreter;
-		to: AirportLoader;
+		from: AirportsTableInterpreter;
+		to: AirportsLoader;
 	}
 
-	block AirportLoader oftype SQLiteLoader {
+	block AirportsLoader oftype SQLiteLoader {
 		table: "airports";
 		file: "./airports.sqlite";
 	}
