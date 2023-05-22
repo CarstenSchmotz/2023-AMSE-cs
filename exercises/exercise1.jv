@@ -38,13 +38,6 @@ pipeline AirportsPipeline {
 	   	to: AirportsTableInterpreter;
 	}
 
-    valuetype geo_punkt oftype text {
-       
-        constraints: [ Geopunkt];
-    }
-    constraint Geopunkt oftype RegexConstraint {
-        regex: /:\d+,:\d+/; ///[a-z]{2}:\d+:\d+(:\d+)?(:\d+)?/;
-    }
 
    
 
