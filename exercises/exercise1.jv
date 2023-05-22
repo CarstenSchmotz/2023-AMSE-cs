@@ -30,6 +30,7 @@ pipeline AirportsPipeline {
 	block NameHeaderWriter oftype CellWriter {
 		at: cell A1;
 	    write: ["column_1"];
+        //write: "column_1";
 	}
 
 	pipe {
@@ -37,10 +38,13 @@ pipeline AirportsPipeline {
 	   	to: AirportsTableInterpreter;
 	}
 
-   // valuetype geo_punkt oftype text {
+    valuetype geo_punkt oftype text {
        
-     //   constraints: [ Geopunkt];
-    //}
+        constraints: [ Geopunkt];
+    }
+    constraint Geopunkt oftype RegexConstraint {
+        regex: /d,d; ///[a-z]{2}:\d+:\d+(:\d+)?(:\d+)?/;
+    }
 
    
 
