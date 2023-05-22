@@ -29,7 +29,7 @@ pipeline AirportsPipeline {
 
 	block NameHeaderWriter oftype CellWriter {
 		at: cell A1;
-	    write: "column_1";
+	    write: ["column_1"];
 	}
 
 	pipe {
