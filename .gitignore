@@ -1,2 +1,4 @@
 
-*.sqlite
+#*.sqlite
+data/CarRegistration.sqlite
+data/Energyprize.sqlite
