@@ -1,7 +1,7 @@
 import pandas as pd
 from sqlalchemy.types import String, Float, BigInteger
 import numpy as np
-import sqlite3
+
 
 #Download csv File
 df = pd.read_csv("https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV",sep=';', decimal=',')
@@ -26,7 +26,7 @@ df.replace('',np.nan, inplace=True)
 df.dropna(inplace=True)
 
 
-columnTypes = {'EVA_NR': 'BIGINT', 'DS100': String,'IFOPT': 'Text','NAME': String,'Verkehr': String ,'Laenge': Float,'Breite': Float,'Betreiber_Name': String , 'Betreiber_Nr' : BigInteger}
+columnTypes = {'EVA_NR': BigInteger, 'DS100': String,'IFOPT': String,'NAME': String,'Verkehr': String ,'Laenge': Float,'Breite': Float,'Betreiber_Name': String , 'Betreiber_Nr' : BigInteger}
 
 #Write to sqlite
 df.to_sql('trainstops', 'sqlite:///trainstops.sqlite', if_exists= 'replace', index=False)
