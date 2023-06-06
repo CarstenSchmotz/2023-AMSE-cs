@@ -25,8 +25,8 @@ df.replace('',np.nan, inplace=True)
 #Drop nan cells
 df.dropna(inplace=True)
 
+#Convert column 'Betreiber_Nr' to integer
+df['Betreiber_Nr'] = df['Betreiber_Nr'].astype(int)
 
-columnTypes = {'EVA_NR': BigInteger, 'DS100': String,'IFOPT': String,'NAME': String,'Verkehr': String ,'Laenge': Float,'Breite': Float,'Betreiber_Name': String , 'Betreiber_Nr' : Integer}
-#df['Betreiber_Nr'] = df['Betreiber_Nr'].astype(int)
 #Write to sqlite
 df.to_sql('trainstops', 'sqlite:///trainstops.sqlite', if_exists= 'replace', index=False)
