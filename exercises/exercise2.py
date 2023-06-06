@@ -18,13 +18,15 @@ df = df[(df['Laenge']>= -90 )& (df['Laenge']<= 90) & (df['Breite']>= -90 )& (df[
 #<exactly two characters>:<any amount of numbers>:<any amount of numbers><optionally another colon followed by any amount of numbers>
 df = df[df['IFOPT'].str.match(r'^[a-z]{2}:\d+:\d+(:\d+)?(:\d+)?$',na=False)]
 
-#Drop empty cells
+#Change empty cells to nan
 df.replace('',np.nan, inplace=True)
+
+#Drop nan cells
 df.dropna(inplace=True)
 
 
 #columnTypes = {'EVA_NR': BigInteger, 'DS100': String,'IFOPT': String,'NAME': String,'Verkehr': String ,'Laenge': Float,'Breite': Float,'Betreiber_Name': String }
-columnTypes = {'ID': BigInteger, 'Verkehr': String,'Laenge': Float,'Laenge': Float,'Breite': Float,'IFOPT': String }
+columnTypes = {'ID': BigInteger, 'Verkehr': String,'Laenge': Float,'Breite': Float,'IFOPT': String }
 
 #Write to sqlite
 df.to_sql('trainstops', 'sqlite:///trainstops.sqlite', if_exists= 'replace', index=False)
