@@ -1,5 +1,6 @@
 import pandas as pd
 from sqlalchemy.types import String, Float, BigInteger
+import numpy as np
 
 #Download csv File
 df = pd.read_csv("https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV",sep=';', decimal=',')
@@ -18,7 +19,8 @@ df = df[(df['Laenge']>= -90 )& (df['Laenge']<= 90) & (df['Breite']>= -90 )& (df[
 df = df[df['IFOPT'].str.match(r'^[a-z]{2}:\d+:\d+(:\d+)?(:\d+)?$',na=False)]
 
 #Drop empty cells
-df.dropna()
+df.replace('',np.nan, inplace=True)
+df.dropna(inplace=True)
 
 
 #columnTypes = {'EVA_NR': BigInteger, 'DS100': String,'IFOPT': String,'NAME': String,'Verkehr': String ,'Laenge': Float,'Breite': Float,'Betreiber_Name': String }
