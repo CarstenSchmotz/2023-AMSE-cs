@@ -17,7 +17,7 @@ df = df[(df['Laenge']>= -90 )& (df['Laenge']<= 90) & (df['Breite']>= -90 )& (df[
 
 #Valid "IFOPT" values follow this pattern:
 #<exactly two characters>:<any amount of numbers>:<any amount of numbers><optionally another colon followed by any amount of numbers>
-df = df[df['IFOPT'].str.match(r'^[a-z]{2}:\d+:\d+(:\d+)?(:\d+)?$',na=False)]
+df = df[df['IFOPT'].str.contains(r'^[A-Za-z]{2}:\d*:\d*(?::\d*)?$',na=False)]
 
 #Change empty cells to nan
 df.replace('',np.nan, inplace=True)
