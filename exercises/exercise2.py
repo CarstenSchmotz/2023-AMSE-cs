@@ -23,4 +23,4 @@ df.dropna()
 
 columnTypes = {'EVA_NR': BigInteger, 'DS100': String,'IFOPT': String,'NAME': String,'Verkehr': String ,'Laenge': Float,'Breite': Float,'Betreiber_Name': String }
 #Write to sqlite
-df.to_sql('trainstops', 'sqlite:///exercises/trainstops.sqlite', if_exists= 'replace', index=False)
+df.to_sql('trainstops', 'sqlite:///trainstops.sqlite', if_exists= 'replace', index=False)
