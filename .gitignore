@@ -2,3 +2,4 @@
 *.sqlite
 data/CarRegistration.sqlite
 data/Energyprize.sqlite
+project/exploration_Template.ipynb
