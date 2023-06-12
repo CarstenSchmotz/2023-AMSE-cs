@@ -4,8 +4,8 @@ on:
   push:
     branches:
     - main
-   # paths:
-    #- data/**
+    paths:
+      - project/**
     
 
 jobs:
@@ -29,7 +29,6 @@ jobs:
     # Run Test
     - name: Run Test
       run: |
-       chmod +x testing.sh
         ./main/project/testing.sh
  #       ./2023-AMSE-cs/project/testing.sh
 
