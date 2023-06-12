@@ -22,9 +22,9 @@ def testpipeline(path):
 def main():
     runAutomatedDatapPipeline()
     print('----------------------------Run Pipeline-------------------')
-    #testpipeline(pathcar)
+    testpipeline(pathcar)
     print('----------------------------Test path carregistration-------------------')
-    #testpipeline(pathenergy)
+    testpipeline(pathenergy)
     print('----------------------------Test run engery prize-------------------')
     print("Test completed")
     
