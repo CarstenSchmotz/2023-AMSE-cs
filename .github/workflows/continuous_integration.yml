@@ -23,7 +23,7 @@ jobs:
     # Run Test
     - name: Run Test
       run: |
-        find . -name "testing.sh"
+        find . -name "testing.py"
 
  #       ./main/project/testing.sh
  #       ./2023-AMSE-cs/project/testing.sh
