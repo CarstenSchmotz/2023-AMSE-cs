@@ -21,11 +21,8 @@ def testpipeline(path):
     
 def main():
     runAutomatedDatapPipeline()
-    print('----------------------------Run Pipeline-------------------')
     testpipeline(pathcar)
-    print('----------------------------Test path carregistration-------------------')
     testpipeline(pathenergy)
-    print('----------------------------Test run engery prize-------------------')
     print("Test completed")
     
 if __name__ == "__main__":

@@ -9,16 +9,13 @@ if(downloadFiles):
 
 else:
    df = pd.read_excel('/Users/carstenschmotz/Downloads/fz28_2022_09.xlsx', sheet_name=4,header=[7,8,9,10,11] )
-print('----------------------------download Cars-------------------')
 df.columns.values[0] = 'Monat'
 df.columns.values[1] = 'Insgesamt'
 df.columns.values[2] = 'Alternative Antrieb'
 df.columns.values[3] = 'Alternative in Prozent'
 df.columns.values[4] = 'Elektroantriebe Ingesamt'
 #df.columns.values[5] = ''
-print('----------------------------Cars Columns -------------------')
 df.to_sql('carregistration', 'sqlite:///main/data/CarRegistration.sqlite', if_exists='replace', index=False)
-print('----------------------------Cars to sql-------------------')
 print("First DONE ")
 
 if(downloadFiles):
