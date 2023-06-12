@@ -11,7 +11,7 @@ print("Filepath found")
     
 
 def runAutomatedDatapPipeline():
-    command = "python" + os.path.abspath(pathAutomatedDatapipeline)
+    command = "python " + os.path.abspath(pathAutomatedDatapipeline)
     os.system(command)
     
 def testpipeline(path):

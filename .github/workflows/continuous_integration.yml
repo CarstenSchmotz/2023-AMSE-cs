@@ -9,12 +9,11 @@ on:
     
 
 jobs:
-  build:
+  Test:
     runs-on: ubuntu-latest
 
     steps:
-   
-
+  
   # Install python
     - name: Set up Python 3.11
       uses: actions/setup-python@v4
