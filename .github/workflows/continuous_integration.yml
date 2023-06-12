@@ -26,9 +26,8 @@ jobs:
     # Run Test
     - name: Run Test
       run: |
-        find ./ -type f
-
- #       ./main/project/testing.sh
+        chmod u+r+x ./main/project/testing.sh
+        ./main/project/testing.sh
  #       ./2023-AMSE-cs/project/testing.sh
  #chmod u+r+x testing.sh
 
