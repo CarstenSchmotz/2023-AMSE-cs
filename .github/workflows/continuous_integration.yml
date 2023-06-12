@@ -25,7 +25,7 @@ jobs:
     # Run Test
     - name: Run Test
       run: |
-       chmod +x testing
+       chmod +x testing.sh
         ./project/testing.sh
  #       ./2023-AMSE-cs/project/testing.sh
 
