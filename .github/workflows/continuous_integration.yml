@@ -13,7 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-  
+
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        path: main
+
   # Install python
     - name: Set up Python 3.11
       uses: actions/setup-python@v4
@@ -25,7 +30,7 @@ jobs:
     - name: Run Test
       run: |
        chmod +x testing.sh
-        ./project/testing.sh
+        ./main/project/testing.sh
  #       ./2023-AMSE-cs/project/testing.sh
 
     #- name: Checkout exercise feedback
