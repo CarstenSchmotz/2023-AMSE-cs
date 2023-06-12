@@ -9,22 +9,23 @@ on:
     
 
 jobs:
-  testrun:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        path: main
+   
 
   # Install python
     - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
         python-version: 3.11
+
+
     # Run Test
     - name: Run Test
       run: |
+       chmod +x testing
         ./project/testing.sh
  #       ./2023-AMSE-cs/project/testing.sh
 
@@ -34,9 +35,6 @@ jobs:
        # repository: jvalue/amse-exercise-feedback
         #path: grading
 
-   # - name: Set up Node
-    #  uses: actions/setup-node@v3
-     # with:
-      #  node-version: 'lts/*'
+  
 
     

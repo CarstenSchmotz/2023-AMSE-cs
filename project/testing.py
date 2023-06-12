@@ -20,7 +20,7 @@ def testpipeline(path):
     
     
 def main():
-    #runAutomatedDatapPipeline()
+    runAutomatedDatapPipeline()
     testpipeline(pathcar)
     testpipeline(pathenergy)
     print("Test completed")
