@@ -25,10 +25,10 @@ jobs:
     # Run Test
     - name: Run Test
       run: |
-        ./2023-AMSE-cs/project/testing.sh
+        ./project/testing.sh
+ #       ./2023-AMSE-cs/project/testing.sh
 
     #- name: Checkout exercise feedback
-    #./project/testing.sh
      # uses: actions/checkout@v3
       #with:
        # repository: jvalue/amse-exercise-feedback
