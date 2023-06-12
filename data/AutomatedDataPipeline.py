@@ -37,4 +37,4 @@ df.columns.values[2] = 'Insgesamt'
 
 df.to_sql('prize', 'sqlite:///main/data/Energyprize.sqlite', if_exists='replace', index=False)
 
-print("Second DONE")
+print("Second DONE ")
