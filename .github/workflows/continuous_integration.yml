@@ -16,6 +16,11 @@ jobs:
       with:
         path: main
 
+    - name: Set up Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 'lts/*'
+
   # Install python
     - name: Set up Python 3.11
       uses: actions/setup-python@v4
@@ -28,8 +33,7 @@ jobs:
       run: |
         chmod u+r+x ./main/project/testing.sh
         ./main/project/testing.sh
- #       ./2023-AMSE-cs/project/testing.sh
- #chmod u+r+x testing.sh
+ 
 
  
 
