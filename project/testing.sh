@@ -1,2 +1,2 @@
-echo "running testing.py"
+#echo "running testing.py"
 python testing.py
