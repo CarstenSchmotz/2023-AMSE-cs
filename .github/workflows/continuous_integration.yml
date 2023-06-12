@@ -25,17 +25,18 @@ jobs:
     # Run Test
     - name: Run Test
       run: |
-        ./project/testing.sh
+        ./2023-AMSE-cs/project/testing.sh
 
     #- name: Checkout exercise feedback
+    #./project/testing.sh
      # uses: actions/checkout@v3
       #with:
        # repository: jvalue/amse-exercise-feedback
         #path: grading
 
-    - name: Set up Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 'lts/*'
+   # - name: Set up Node
+    #  uses: actions/setup-node@v3
+     # with:
+      #  node-version: 'lts/*'
 
     
