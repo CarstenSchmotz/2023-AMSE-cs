@@ -32,6 +32,11 @@ jobs:
     - name: install openpyxl
       run: pip install openpyxl
 
+    - name: Install Packages
+      run: |
+        chmod u+r+x ./main/project/needed.txt
+        .pip install -r ./main/project/needed.txt
+
 
     # Run Test
     - name: Run Test
