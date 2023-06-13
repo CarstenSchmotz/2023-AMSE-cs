@@ -15,7 +15,7 @@ df.columns.values[2] = 'Alternative Antrieb'
 df.columns.values[3] = 'Alternative in Prozent'
 df.columns.values[4] = 'Elektroantriebe Ingesamt'
 #df.columns.values[5] = ''
-df.to_sql('carregistration', 'sqlite:///main/data/CarRegistration.sqlite', if_exists='replace', index=False)
+df.to_sql('carregistration', 'sqlite:///data/CarRegistration.sqlite', if_exists='replace', index=False)
 print("First DONE ")
 
 if(downloadFiles):
@@ -35,6 +35,6 @@ df.columns.values[2] = 'Energie und Vertrieb'
 df.columns.values[1] = 'Haushalte'
 df.columns.values[2] = 'Insgesamt'
 
-df.to_sql('prize', 'sqlite:///main/data/Energyprize.sqlite', if_exists='replace', index=False)
+df.to_sql('prize', 'sqlite:///data/Energyprize.sqlite', if_exists='replace', index=False)
 
 print("Second DONE ")
