@@ -42,7 +42,7 @@ jobs:
     - name: Run Test
       run: |
         chmod u+r+x ./main/project/testing.sh
-        cd ./main/project/
+        cd ./main/project
         ./testing.sh
  
 
