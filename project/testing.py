@@ -4,7 +4,7 @@ import os
 
 pathcar = "./CarRegistration.sqlite"
 pathenergy = "./Energyprize.sqlite"
-pathAutomatedDatapipeline = "./project/AutomatedDataPipeline.py"
+pathAutomatedDatapipeline = "./AutomatedDataPipeline.py"
 print(os.path.abspath(pathAutomatedDatapipeline))
 print("Filepath found")
 
