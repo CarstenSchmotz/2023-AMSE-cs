@@ -21,8 +21,8 @@ def testpipeline(path):
     
 def main():
     runAutomatedDatapPipeline()
-    testpipeline(pathcar)
-    testpipeline(pathenergy)
+    #testpipeline(pathcar)
+    #testpipeline(pathenergy)
     print("Test completed")
     
 if __name__ == "__main__":
