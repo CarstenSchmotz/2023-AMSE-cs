@@ -2,9 +2,9 @@ import pandas as pd
 import os
 
 
-pathcar = "./data/CarRegistration.sqlite"
-pathenergy = "./data/Energyprize.sqlite"
-pathAutomatedDatapipeline = "./data/AutomatedDataPipeline.py"
+pathcar = "./CarRegistration.sqlite"
+pathenergy = "./Energyprize.sqlite"
+pathAutomatedDatapipeline = "./project/AutomatedDataPipeline.py"
 print(os.path.abspath(pathAutomatedDatapipeline))
 print("Filepath found")
 
