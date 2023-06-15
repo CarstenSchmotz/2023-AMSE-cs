@@ -1,0 +1,133 @@
+pipeline CarPipeline {
+
+	block CarsExtractor oftype HttpExtractor {
+		url: "https://www-genesis.destatis.de/genesis/downloads/00/tables/46251-0021_00.csv";
+	}
+
+	pipe {
+		from: CarsExtractor;
+		to: CarsTextFileInterpreter;
+	}
+
+	block CarsTextFileInterpreter oftype TextFileInterpreter {
+
+	}
+
+	pipe {
+		from: CarsTextFileInterpreter;
+		to: CarsCSVInterpreter;
+	}
+
+	block CarsCSVInterpreter oftype CSVInterpreter {
+		delimiter: ';';
+	}
+
+	pipe {
+		from: CarsCSVInterpreter;
+		to: RowDeleter;
+	}
+	block RowDeleter oftype RowDeleter{
+		delete: [row 1, row 2, row 3, row 4 , row 5, row 6, row 485, row 486, row 487];
+	} 
+	pipe {
+		from: RowDeleter;
+		to: CarsCoreDataSelector;
+	}
+	
+	block CarsCoreDataSelector oftype CellRangeSelector{
+		select: range BU6:BU*;
+	}
+	pipe {
+		from: CarsCoreDataSelector;
+		to: CarsCoreDataSelector4;
+	}
+	
+	block CarsCoreDataSelector4 oftype CellRangeSelector{
+		select: range BK1:BK4;
+	}
+	pipe {
+		from: CarsCoreDataSelector4;
+		to: CarsCoreDataSelector5;
+	}
+	block CarsCoreDataSelector5 oftype CellRangeSelector{
+		select: range BA6:BA*;
+	}
+	pipe {
+		from: CarsCoreDataSelector5;
+		to: CarsCoreDataSelector6;
+	}
+	block CarsCoreDataSelector6 oftype CellRangeSelector{
+		select: range AQ6:AQ*;
+	}
+	pipe {
+		from: CarsCoreDataSelector6;
+		to: CarsCoreDataSelector7;
+	}
+	block CarsCoreDataSelector7 oftype CellRangeSelector{
+		select: range AG6:AG*;
+	}
+	pipe {
+		from: CarsCoreDataSelector7;
+		to: CarsCoreDataSelector8;
+	}
+	block CarsCoreDataSelector8 oftype CellRangeSelector{
+		select: range W6:W*;
+	}
+	pipe {
+		from: CarsCoreDataSelector8;
+		to: CarsCoreDataSelector9;
+	}
+	block CarsCoreDataSelector9 oftype CellRangeSelector{
+		select: range M6:M*;
+	}pipe {
+		from: CarsCoreDataSelector9;
+		to: CarsCoreDataSelector10;
+	}
+	block CarsCoreDataSelector10 oftype CellRangeSelector{
+		select: range A6:C*;
+
+	}
+
+	pipe{
+		from: CarsCoreDataSelector10;
+		to: NameHeaderWriter;
+		//to: CarsTableInterpreter;
+	}
+	block NameHeaderWriter oftype CellWriter {
+		at: range A6:J6;
+	    write: ["date", "CIN", "name", "petrol", "diesel", "gas", "electro", "hybrid", "pluginHybrid", "others"];
+        
+	}
+
+	pipe {
+	   	from: NameHeaderWriter;
+	   	to: CarsTableInterpreter;
+	}
+
+
+	block CarsTableInterpreter oftype TableInterpreter {
+		header: true;
+		columns: [
+			"date" oftype integer,
+			"CIN" oftype text,
+			"name" oftype text,
+			"petrol" oftype text,
+			"diesel" oftype text,
+			"gas" oftype text,
+			"electro" oftype decimal,
+			"hybrid" oftype decimal,
+			"pluginHybrid" oftype integer,
+			"others" oftype decimal
+		];
+	}
+
+	pipe {
+		from: CarsTableInterpreter;
+		to: CarsLoader;
+	}
+
+	block CarsLoader oftype SQLiteLoader {
+		table: "cars";
+		file: "cars.sqlite";
+	}
+}
