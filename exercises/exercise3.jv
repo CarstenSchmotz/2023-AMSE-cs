@@ -4,7 +4,6 @@ pipeline CarPipeline {
         -> CarsTextFileInterpreter
         -> CarsTextRangeSelector
         -> CarsCSVInterpreter
-		//-> RowDeleter
         -> CarsColumnDeleter
         -> CarsTableInterpreter
         -> CarsLoader;
@@ -29,10 +28,6 @@ pipeline CarPipeline {
 		delimiter: ';';
 	}
 
-	//not used
-	block RowDeleter oftype RowDeleter{
-		delete: [row 1, row 2, row 3, row 4 , row 5, row 6, row 485, row 486, row 487];
-	}
 	
 	
 	
