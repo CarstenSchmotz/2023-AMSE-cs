@@ -79,7 +79,7 @@ pipeline CarPipeline {
 			"electro" oftype Positve_Integer,
 			"hybrid" oftype Positve_Integer,
 			"plugInHybrid" oftype Positve_Integer,
-		//	"others" oftype Positve_Integer
+			"others" oftype Positve_Integer
 		];
 	}
 
