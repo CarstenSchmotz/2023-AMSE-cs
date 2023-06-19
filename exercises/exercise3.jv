@@ -15,7 +15,7 @@ pipeline CarPipeline {
 	
 
 	block CarsTextFileInterpreter oftype TextFileInterpreter {
-		encoding: "ASCII";
+		encoding: "utf-8";
 
 	}
 
