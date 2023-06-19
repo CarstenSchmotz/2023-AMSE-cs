@@ -1,130 +1,89 @@
 pipeline CarPipeline {
 
+	CarsExtractor
+        -> CarsTextFileInterpreter
+        -> CarsTextRangeSelector
+        -> CarsCSVInterpreter
+		//-> RowDeleter
+        -> CarsColumnDeleter
+        -> CarsTableInterpreter
+        -> CarsLoader;
+
 	block CarsExtractor oftype HttpExtractor {
 		url: "https://www-genesis.destatis.de/genesis/downloads/00/tables/46251-0021_00.csv";
 	}
 
-	pipe {
-		from: CarsExtractor;
-		to: CarsTextFileInterpreter;
-	}
+	
 
 	block CarsTextFileInterpreter oftype TextFileInterpreter {
 
 	}
 
-	pipe {
-		from: CarsTextFileInterpreter;
-		to: CarsCSVInterpreter;
-	}
+	block CarsTextRangeSelector oftype TextRangeSelector {
+        lineFrom: 7;
+        lineTo: 483;
+    }
 
 	block CarsCSVInterpreter oftype CSVInterpreter {
 		delimiter: ';';
 	}
 
-	pipe {
-		from: CarsCSVInterpreter;
-		to: RowDeleter;
-	}
+	//not used
 	block RowDeleter oftype RowDeleter{
 		delete: [row 1, row 2, row 3, row 4 , row 5, row 6, row 485, row 486, row 487];
-	} 
-	pipe {
-		from: RowDeleter;
-		to: CarsCoreDataSelector;
 	}
 	
-	block CarsCoreDataSelector oftype CellRangeSelector{
-		select: range BU6:BU*;
-	}
-	pipe {
-		from: CarsCoreDataSelector;
-		to: CarsCoreDataSelector4;
+	
+	
+	block CarsColumnDeleter oftype ColumnDeleter{
+		 delete: [column D, column E, column F, column Q, column H, column I, column J, column K, column L, column N, column O, column P, column Q, column R, column S, column T, column U, column V, column X, column Y, column Z, 
+        column AA, column AB, column AC, column AD, column AE, column AF, column AH, column AI, column AJ, column AK, column AL, column AM, column AN, column AO, column AP, column AR, column AS, column AT, column AU, column AV, column AW, column AX, column AY, column AZ, 
+        column BB, column BC, column BD, column BE, column BF, column BQ, column BH, column BI, column BJ, column BL, column BM, column BM, column BQ, column BR, column BS, column BT, column BV, column BW, column BX, column BY, column BZ, 
+        column CA, column CB, column CC, column CD, column CE];
 	}
 	
-	block CarsCoreDataSelector4 oftype CellRangeSelector{
-		select: range BK1:BK4;
-	}
-	pipe {
-		from: CarsCoreDataSelector4;
-		to: CarsCoreDataSelector5;
-	}
-	block CarsCoreDataSelector5 oftype CellRangeSelector{
-		select: range BA6:BA*;
-	}
-	pipe {
-		from: CarsCoreDataSelector5;
-		to: CarsCoreDataSelector6;
-	}
-	block CarsCoreDataSelector6 oftype CellRangeSelector{
-		select: range AQ6:AQ*;
-	}
-	pipe {
-		from: CarsCoreDataSelector6;
-		to: CarsCoreDataSelector7;
-	}
-	block CarsCoreDataSelector7 oftype CellRangeSelector{
-		select: range AG6:AG*;
-	}
-	pipe {
-		from: CarsCoreDataSelector7;
-		to: CarsCoreDataSelector8;
-	}
-	block CarsCoreDataSelector8 oftype CellRangeSelector{
-		select: range W6:W*;
-	}
-	pipe {
-		from: CarsCoreDataSelector8;
-		to: CarsCoreDataSelector9;
-	}
-	block CarsCoreDataSelector9 oftype CellRangeSelector{
-		select: range M6:M*;
-	}pipe {
-		from: CarsCoreDataSelector9;
-		to: CarsCoreDataSelector10;
-	}
-	block CarsCoreDataSelector10 oftype CellRangeSelector{
-		select: range A6:C*;
 
-	}
-
-	pipe{
-		from: CarsCoreDataSelector10;
-		to: NameHeaderWriter;
-		//to: CarsTableInterpreter;
-	}
-	block NameHeaderWriter oftype CellWriter {
-		at: range A6:J6;
-	    write: ["date", "CIN", "name", "petrol", "diesel", "gas", "electro", "hybrid", "pluginHybrid", "others"];
+	
+	//block NameHeaderWriter oftype CellWriter {
+	//	at: range A6:J6;
+	  //  write: ["date", "CIN", "name", "petrol", "diesel", "gas", "electro", "hybrid", "pluginHybrid", "others"];
         
+	//}
+	valuetype CIN oftype text{
+		constraints: [MaxCINLenght];
+	}
+	constraint MaxCINLenght oftype LengthConstraint{
+		minLength: 0;
+		maxLength: 5;
 	}
 
-	pipe {
-	   	from: NameHeaderWriter;
-	   	to: CarsTableInterpreter;
+	valuetype Positve_Integer oftype integer{
+		constraints: [Onlypositiv];
+
+	}
+	constraint Onlypositiv oftype RangeConstraint{
+		lowerBound:0;
+		lowerBoundInclusive: false;
 	}
 
 
 	block CarsTableInterpreter oftype TableInterpreter {
-		header: true;
+		header: false;
 		columns: [
-			"date" oftype integer,
-			"CIN" oftype text,
+			"date" oftype text,
+			"CIN" oftype CIN,
 			"name" oftype text,
-			"petrol" oftype text,
-			"diesel" oftype text,
-			"gas" oftype text,
-			"electro" oftype decimal,
-			"hybrid" oftype decimal,
-			"pluginHybrid" oftype integer,
-			"others" oftype decimal
+			"petrol" oftype Positve_Integer,
+			"diesel" oftype Positve_Integer,
+			"gas" oftype Positve_Integer,
+			"electro" oftype Positve_Integer,
+			"hybrid" oftype Positve_Integer,
+			"plugInHybrid" oftype Positve_Integer,
+		//	"others" oftype Positve_Integer
 		];
 	}
 
-	pipe {
-		from: CarsTableInterpreter;
-		to: CarsLoader;
-	}
+	
 
 	block CarsLoader oftype SQLiteLoader {
 		table: "cars";
