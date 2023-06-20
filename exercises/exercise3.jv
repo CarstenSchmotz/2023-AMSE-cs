@@ -49,7 +49,7 @@ pipeline CarPipeline {
 		constraints: [MaxCINLenght];
 	}
 	constraint MaxCINLenght oftype LengthConstraint{
-		minLength: 0;
+		minLength: 5;
 		maxLength: 5;
 	}
 
