@@ -18,6 +18,8 @@ pipeline AirportsPipeline {
 		to: AirportsCSVInterpreter;
 	}
 
+
+
 	block AirportsCSVInterpreter oftype CSVInterpreter {
 		delimiter: ';';
 	}
@@ -26,7 +28,7 @@ pipeline AirportsPipeline {
 		from: AirportsCSVInterpreter;
 		to: NameHeaderWriter;
 	}
-
+	
 	block NameHeaderWriter oftype CellWriter {
 		at: cell A1;
 	    write: ["column_1"];
