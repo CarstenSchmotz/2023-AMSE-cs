@@ -35,6 +35,11 @@ df.columns.values[2] = 'Energie und Vertrieb'
 df.columns.values[1] = 'Haushalte'
 df.columns.values[2] = 'Insgesamt'
 
+
+
+
+
+
 df.to_sql('prize', 'sqlite:///./Energyprize.sqlite', if_exists='replace', index=False)
 
 print("Second DONE ")
