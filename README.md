@@ -14,18 +14,22 @@ The final, cleaned dataset.
 
 - `Project Folder`:
 
-	- `AutomatedDataPipeline.py`: Automated data pipeline to get the data
+	- `AutomatedDataPipeline.py`: Automated data pipeline to get the data.
 	- `needed.txt`: A textfile to get the requirments for the test.
-	- `testing.py`: The test file which test the pipeline and codepaths of sqldatabases
+	- `testing.py`: The test file which test the pipeline and codepaths of sql databases.
 	- `testing.sh`: A shell script ot start the test file.
 	- `project-plan.md`: The organistion file for the project.
-	- `gitignore`: Prevents that `.sql` files get summited in order to prevent storage shortage
+	- `gitignore`: Prevents that `.sql` files get summited online to github in order to prevent storage shortage.
 
-## Manual to get results
+## Manual
 
-First of all am automated data pipeline `AutomatedDataPipeline.py` downloads the relevant data from the internet. 
-The second part is to filter the Datatables with `tablefilter.py` which deleted redundant data. The tables are reduced to the summary of the year and the rows are inverse so that the data sets fits each other.  
-Lastly the data is stored in `data.sqlite` for the exploration and the report.
+-First of all am automated data pipeline `AutomatedDataPipeline.py` downloads the relevant data from the internet. 
+
+-The second part is to filter the Datatables with `tablefilter.py` which deleted redundant data. The tables are reduced to the summary of the year and the rows are inverse so that the data sets fits each other.  
+
+-Lastly the data is stored in `data.sqlite` for the exploration and the report.
+
+
 
 
 
