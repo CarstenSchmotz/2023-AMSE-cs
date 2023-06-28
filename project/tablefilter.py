@@ -42,7 +42,7 @@ where Monat LIKE '%{}%'
 df = pd.read_sql_query(sql_query, conn)
 conn.close
 
-Result = './Result.sqlite'
+Result = './data.sqlite'
 conn_neu = sqlite3.connect(Result)
 df.to_sql('Cars',conn_neu, if_exists= 'replace', index= False)
 conn_neu.close
