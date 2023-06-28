@@ -33,7 +33,7 @@ cursor = conn.cursor()
 #Filter the sums of the years
 teilstring = 'Jahr'
 sql_query = '''
-SELECT * FROM carregistration
+SELECT * FROM Cars
 where Monat LIKE '%{}%' 
 '''.format(teilstring)
 df = pd.read_sql_query(sql_query, conn)
@@ -60,7 +60,7 @@ cursor = conn_prize.cursor()
 
 #Reverse data to match
 sql_query_reverse = '''
-SELECT * FROM Prize
+SELECT * FROM prize
 ORDER BY rowid DESC
 '''
 df = pd.read_sql_query(sql_query_reverse, conn_prize)
@@ -74,7 +74,7 @@ cursor = conn.cursor()
 
 #Filter the sums of the years
 sql_query = '''
-SELECT * FROM prize
+SELECT * FROM Prize
 where Haushalte = 'Insgesamt' '''
 
 df = pd.read_sql_query(sql_query, conn)
