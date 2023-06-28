@@ -23,11 +23,9 @@ The following files are part of this project:
 # Manual
 
 -First of all am automated data pipeline `AutomatedDataPipeline.py` downloads the relevant data from the internet. 
-
-
 -The second part is to filter the Datatables with `tablefilter.py` which deleted redundant data. The tables are reduced to the summary of the year and the rows are inverse so that the data sets fits each other.  
-
--Lastly the data is stored in `data.sqlite` for the exploration and the report.# Notes
+-Lastly the data is stored in `data.sqlite` for the exploration and the report.
+- These files are automatically enabled in the report.
 
 # Adtional
 Github actions are enabled to test the pipeline on every push. This ensures that the data is downloaded correctly.
