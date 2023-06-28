@@ -1,13 +1,12 @@
 # AMSE/SAKI 2023 Template Project
-This your open data project in the AMSE/SAKI module for FAU in data engineering.
+This a open data project in the AMSE/SAKI module for FAU in data engineering.
 This repository contains a data science project that is developed by the student over the course of the semester, and (b) the exercises that are submitted over the course of the semester.
 
 
-## Project Setup
+# Project Setup
 The following files are part of this project:
 
-- `data.sqlite`: 
-The final, cleaned dataset. 
+- `data.sqlite`: The final, cleaned dataset. 
 
 - `exploration.ipynb`: A Jupyter notebook that you can use to explore your data and show in detail what it looks like. You can refer to this file in your report for users that want more information about your data.
 - `report.ipynb`: Your final report as a Jupyter notebook. This is the result of your project work and should lead with a question that you want to answer using open data. The content of the report should answer the question, ideally using fitting visualizations, based on the data in `data.sqlite`.
@@ -21,13 +20,22 @@ The final, cleaned dataset.
 	- `project-plan.md`: The organistion file for the project.
 	- `gitignore`: Prevents that `.sql` files get summited online to github in order to prevent storage shortage.
 
-## Manual
+# Manual
 
 -First of all am automated data pipeline `AutomatedDataPipeline.py` downloads the relevant data from the internet. 
+
 
 -The second part is to filter the Datatables with `tablefilter.py` which deleted redundant data. The tables are reduced to the summary of the year and the rows are inverse so that the data sets fits each other.  
 
 -Lastly the data is stored in `data.sqlite` for the exploration and the report.
+
+# Notes
+
+Github Actions are active to test for pipeline on every push. This ensures that the data is correctly downloaded.
+Folder`github/workflows`:
+`continuous_integration.yml`: Starts the Github action test for the pipeline.
+`exercise-feedback.yml`: Activates the grading for the exercises.
+
 
 
 
@@ -35,6 +43,6 @@ The final, cleaned dataset.
 
 
 ## Exercises
-The exercises folder in the repository contains the results of the exercises that had to be completed over the semester. Exercises one, three and five are completed in Jayvee while exercises two and four are completed using Python.
+The exercises folder in the repository contains the results of the exercises that had to be completed over the semester. Exercises one, three and five are completed in Jayvee while exercises two and four are completed using Python. Github actions are used to test and grade the exercises.
 
 
