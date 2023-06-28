@@ -28,9 +28,14 @@ df = pd.read_csv("data.csv",sep=';', decimal=',')
 df = df.drop(['Status'], axis=1)
 
 #Then, drop all rows with invalid values in Verkehr:
-df = df[df['Verkehr'].isin(['FV','RV','nur DPN'])]
+#df = df[df['Verkehr'].isin(['FV','RV','nur DPN'])]
+#Only use the columns
+df = df['Geraet', 'Hersteller','Model','Monat','Temperatur in °C (DWD)','Batterietemperatur in °C (DWD)','Geraet aktiv']
 
-#>= or > is enough
+
+
+
+#Transform data
 df = df[(df['Temperatur'] * 9/5 +32 )& ((df['Betterietemperatur'] * 9/5 +32 ) ]
 
 #Valid "IFOPT" values follow this pattern:
