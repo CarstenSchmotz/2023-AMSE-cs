@@ -43,7 +43,7 @@ Electricity prices for households: Germany, years,annual consumption classes, pr
 3. Continous integration [#3][i3]
 4. Project deployment on Github [#4][i4]
 5. Filter relevant cars and energy prizes [#5][i5]
-6. Group cars registration and energy prizes by location [#6][i6] 
+6. Group cars registration and energy prizes [#6][i6] 
 7. Link prize raise with car buys  [#7][i7]
 8. Visualise in line graph [#8][i8]
  
