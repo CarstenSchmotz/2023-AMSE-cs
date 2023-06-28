@@ -27,22 +27,15 @@ The following files are part of this project:
 
 -The second part is to filter the Datatables with `tablefilter.py` which deleted redundant data. The tables are reduced to the summary of the year and the rows are inverse so that the data sets fits each other.  
 
--Lastly the data is stored in `data.sqlite` for the exploration and the report.
+-Lastly the data is stored in `data.sqlite` for the exploration and the report.# Notes
 
-# Notes
-
-Github Actions are active to test for pipeline on every push. This ensures that the data is correctly downloaded.
-Folder`github/workflows`:
-`continuous_integration.yml`: Starts the Github action test for the pipeline.
-`exercise-feedback.yml`: Activates the grading for the exercises.
-
+# Adtional
+Github actions are enabled to test the pipeline on every push. This ensures that the data is downloaded correctly.
+github/workflows' folder:
+`continuous_integration.yml`: Starts the Github pipeline action test.
+`exercise-feedback.yml`: Enables grading for the exercises.
 
 
-
-
-
-
-## Exercises
-The exercises folder in the repository contains the results of the exercises that had to be completed over the semester. Exercises one, three and five are completed in Jayvee while exercises two and four are completed using Python. Github actions are used to test and grade the exercises.
-
+# Exercises
+The exercises folder in the repository contains the results of the exercises that were completed throughout the semester. Exercises one, three, and five are completed in Jayvee, while exercises two and four are completed in Python. Github actions are used to test and grade the exercises.
 
