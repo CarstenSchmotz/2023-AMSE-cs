@@ -16,7 +16,7 @@ df.columns.values[3] = 'Alternative in Prozent'
 df.columns.values[4] = 'Elektroantriebe Ingesamt'
 #df.columns.values[5] = ''
 df.to_sql('carregistration', 'sqlite:///./CarRegistration.sqlite', if_exists='replace', index=False)
-print("First DONE ")
+print("First Download DONE ")
 
 if(downloadFiles):
     df = pd.read_csv('https://www-genesis.destatis.de/genesis/downloads/00/tables/61243-0002_00.csv', sep=';', encoding="ISO-8859-1",skiprows =[0,1,2,3,4,5])
@@ -42,4 +42,4 @@ df.columns.values[2] = 'Insgesamt'
 
 df.to_sql('prize', 'sqlite:///./Energyprize.sqlite', if_exists='replace', index=False)
 
-print("Second DONE ")
+print("Second Download DONE ")

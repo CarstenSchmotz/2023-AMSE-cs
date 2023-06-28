@@ -31,7 +31,7 @@ conn_reverse.close
 
 
 conn = sqlite3.connect(carreg_table)
-print("works")
+
 
 cursor = conn.cursor()
 teilstring = 'Jahr'
@@ -45,9 +45,8 @@ conn.close
 Result = './Result.sqlite'
 conn_neu = sqlite3.connect(Result)
 df.to_sql('Cars',conn_neu, if_exists= 'replace', index= False)
-print('Carfilter Done')
 conn_neu.close
- print('Carfilter done')   
+print('Carfilter done')   
     
     
     
@@ -99,7 +98,7 @@ conn_neu.close
 
 #def main():
  #   filter_car()
-print('done')
+
    # filter_energy()
 
 
