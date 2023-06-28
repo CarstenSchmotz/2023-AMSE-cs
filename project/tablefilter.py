@@ -4,7 +4,7 @@ from sqlalchemy.types import Integer, FLOAT,String
 
 carreg_table = "./CarRegistration.sqlite"
 energy_table = "./Energyprize.sqlite"
-print('find Path')
+
 
 
 
@@ -47,7 +47,7 @@ conn_neu = sqlite3.connect(Result)
 df.to_sql('Cars',conn_neu, if_exists= 'replace', index= False)
 print('Carfilter Done')
 conn_neu.close
-    
+ print('Carfilter done')   
     
     
     
@@ -77,7 +77,7 @@ conn_prize.close
 #filter only year prize
 conn = sqlite3.connect(energy_table)
 
-print("Energy Table Found")
+#print("Energy Table Found")
 
 cursor = conn.cursor()
 sql_query = '''
@@ -89,7 +89,7 @@ conn.close
 #Result = './Result.sqlite'
 conn_neu = sqlite3.connect(Result)
 df.to_sql('Prize',conn_neu, if_exists= 'replace', index= False)
-print('Energyfilter Done')
+print('Energyfilter done')
 conn_neu.close
 
 
