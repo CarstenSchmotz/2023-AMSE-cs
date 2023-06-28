@@ -44,9 +44,8 @@ Electricity prices for households: Germany, years,annual consumption classes, pr
 4. Project deployment on Github [#4][i4]
 5. Filter relevant cars and energy prizes [#5][i5]
 6. Group cars registration and energy prizes by location [#6][i6] 
-7. Destinguish heat points with strong prize raises and minimal change [#7][i7]
-8. Link prize raise with car buys  [#8][i8]
-9. Display the locations [#9][i9]
+7. Link prize raise with car buys  [#7][i7]
+8. Visualise in line graph [#8][i8]
  
 
 [i1]: https://github.com/CarstenSchmotz/2023-AMSE-cs/issues/1
@@ -57,4 +56,3 @@ Electricity prices for households: Germany, years,annual consumption classes, pr
 [i6]: https://github.com/CarstenSchmotz/2023-AMSE-cs/issues/6
 [i7]: https://github.com/CarstenSchmotz/2023-AMSE-cs/issues/7
 [i8]: https://github.com/CarstenSchmotz/2023-AMSE-cs/issues/8
-[i9]: https://github.com/CarstenSchmotz/2023-AMSE-cs/issues/9
