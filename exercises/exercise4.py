@@ -31,7 +31,7 @@ df = df.drop(['Status'], axis=1)
 df = df[df['Verkehr'].isin(['FV','RV','nur DPN'])]
 
 #>= or > is enough
-df = df[(df['Laenge']>= -90 )& (df['Laenge']<= 90) & (df['Breite']>= -90 )& (df['Breite']<= 90) ]
+df = df[(df['Temperatur'] * 9/5 +32 )& ((df['Betterietemperatur'] * 9/5 +32 ) ]
 
 #Valid "IFOPT" values follow this pattern:
 #<exactly two characters>:<any amount of numbers>:<any amount of numbers><optionally another colon followed by any amount of numbers>
@@ -47,5 +47,5 @@ df.dropna(inplace=True)
 df['Betreiber_Nr'] = df['Betreiber_Nr'].astype(int)
 
 #Write to sqlite
-df.to_sql('trainstops', 'sqlite:///trainstops.sqlite', if_exists= 'replace', index=False)
+df.to_sql('temperatures', 'sqlite:///temperatures.sqlite', if_exists= 'replace', index=False)
 '''
