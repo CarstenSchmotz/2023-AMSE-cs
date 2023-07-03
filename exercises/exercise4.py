@@ -1,7 +1,7 @@
 import pandas as pd
 import urllib.request
 import zipfile 
-from sqlalchemy import create_engine
+#from sqlalchemy import create_engine
 
 
 #Download zip file
@@ -27,5 +27,7 @@ df = df[(df["Geraet"] > 0) &
      
 
 # write to sqlite database
-engine = create_engine('sqlite:///./temperatures.sqlite', echo=False)
-df.to_sql("temperatures", con=engine, if_exists='replace', index=False)
+'''engine = create_engine('sqlite:///./temperatures.sqlite', echo=False)
+df.to_sql("temperatures", con=engine, if_exists='replace', index=False)'''
+#Write to sqlite
+df.to_sql('temperatures', 'sqlite:///temperatures.sqlite', if_exists= 'replace', index=False)
