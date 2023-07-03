@@ -20,7 +20,7 @@ SELECT * FROM carregistration
 ORDER BY rowid DESC
 '''
 df = pd.read_sql_query(sql_query_reverse, conn_reverse)
-df.to_sql('carregistration',conn_reverse, if_exists= 'replace', index= False)
+df.to_sql('Cars',conn_reverse, if_exists= 'replace', index= False)
 conn_reverse.close
 
 
