@@ -1,13 +1,13 @@
 import pandas as pd
 import urllib.request
-import zipfile as ZipFile
+import zipfile 
 from sqlalchemy import create_engine
 
 
 #Download zip file
 urllib.request.urlretrieve("https://www.mowesta.com/data/measure/mowesta-dataset-20221107.zip", "./exercises/exercise4.zip")
 
-zip = zip.ZipFile("./exercises/exercise4.zip")
+zip = zipfile.ZipFile("./exercises/exercise4.zip")
 zip.extractall('./exercises')
 
 
@@ -18,8 +18,8 @@ df = pd.read_csv("./exercises/data.csv",sep=';', decimal=',', index_col=False,
 
 df = df.rename(columns={"Temperatur in °C (DWD)": "Temperatur", "Batterietemperatur in °C": "Batterietemperatur"})
 
-df ['Temperatur']= df['Temperatur'] * 9/5 +32 
-df['Batterietemperatur']=df['Betterietemperatur'] * 9/5 +32
+df['Temperatur']= df['Temperatur'] * 9/5 +32 
+df['Batterietemperatur']=df['Batterietemperatur'] * 9/5 +32
 
 
 df = df[(df["Geraet"] > 0) & 
