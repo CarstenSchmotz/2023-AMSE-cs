@@ -8,7 +8,7 @@ from sqlalchemy import create_engine
 urllib.request.urlretrieve("https://www.mowesta.com/data/measure/mowesta-dataset-20221107.zip", "./exercises/exercise4.zip")
 
 zip = zip.ZipFile("./exercises/exercise4.zip")
-zip.extractall('./exercise')
+zip.extractall('./exercises')
 
 
 
