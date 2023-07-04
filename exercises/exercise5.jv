@@ -16,17 +16,10 @@ pipeline GTFSPipeline {
 
     block ZipArchiveInterpreter oftype ArchiveInterpreter { archiveType: "zip";}
     block DataFilePicker oftype FilePicker { path: "/stops.txt";}
-    
-    
+       
 	
 
-	block GTFSTextFileInterpreter oftype TextFileInterpreter {
-		encoding: "ASCII";
-
-	}
-
-
-
+	block GTFSTextFileInterpreter oftype TextFileInterpreter {encoding: "ASCII";}
 	block GTFSCSVInterpreter oftype CSVInterpreter {
 		enclosing: '"'; 
 		enclosingEscape: '"';
@@ -34,9 +27,7 @@ pipeline GTFSPipeline {
 	//block ColumnDataSelector oftype CellRangeSelector {select: range A1:K*;}
 	
 	
-	valuetype Coordinates oftype decimal{
-		constraints: [Angleconstraint];
-	}
+	valuetype Coordinates oftype decimal{ constraints: [Angleconstraint]; }
 	constraint Angleconstraint oftype RangeConstraint{
 		lowerBound: -90;
 		upperBound: 90;
