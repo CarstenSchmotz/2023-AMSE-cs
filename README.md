@@ -8,17 +8,22 @@ The following files are included in this project
 
 - `data.sqlite`: The final, cleaned dataset. 
 
-- exploration.ipynb: A Jupyter notebook you can use to explore your data and show how it looks in detail. You can refer to this file in your report for users who want more information about your data.
-- report.ipynb: Your final report as a Jupyter notebook. This is the result of your project work and should start with a question you want to answer using open data. The content of the report should answer the question, ideally using appropriate visualizations, based on the data in `data.sqlite`.
+- `exploration.ipynb`: A Jupyter notebook you can use to explore your data and show how it looks in detail. You can refer to this file in your report for users who want more information about your data.
 
-- Project Folder:
+- `report.ipynb`: Your final report as a Jupyter notebook. This is the result of your project work and should start with a question you want to answer using open data. The content of the report should answer the question, ideally using appropriate visualizations, based on the data in `data.sqlite`.
 
-	- AutomatedDataPipeline.py: Automated data pipeline to retrieve the data.
+- Project folder:
+
+	
 	- `needed.txt`: A text file to get the requirements for the test.
 	- `testing.py`: The test file that tests the pipeline and codepaths of sql databases.
 	- `testing.sh`: A shell script to run the test file.
 	- `project-plan.md`: The organization file for the project.
 	- gitignore: Prevents `.sql' files from being uploaded online to github, to avoid memory shortage.
+
+- Data folder:
+	- `AutomatedDataPipeline.py`: Automated data pipeline to retrieve the data.
+	- `tablefilter.py`: Filters relevant data.
 
 # Manual
 
