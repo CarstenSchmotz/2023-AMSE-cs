@@ -1,42 +1,52 @@
 pipeline GTFSPipeline {
-
+	//Structure
 	GTFSExtractor
 		-> ZipArchiveInterpreter
 		-> DataFilePicker
-
         -> GTFSTextFileInterpreter
         -> GTFSCSVInterpreter
-		//-> ColumnDataSelector
         -> GTFSTableInterpreter
         -> GTFSLoader;
+
+
+
+
+
+
+
+
+
 
 	block GTFSExtractor oftype HttpExtractor {
 		url: "https://gtfs.rhoenenergie-bus.de/GTFS.zip";
 	}
 
     block ZipArchiveInterpreter oftype ArchiveInterpreter { archiveType: "zip";}
+
+	//Pick out only stops (from stops.txt)
     block DataFilePicker oftype FilePicker { path: "/stops.txt";}
        
 	
-
+	//stop_name must maintain german umlauts
 	block GTFSTextFileInterpreter oftype TextFileInterpreter {encoding: "ASCII";}
 	block GTFSCSVInterpreter oftype CSVInterpreter {
 		enclosing: '"'; 
 		enclosingEscape: '"';
 	}
-	//block ColumnDataSelector oftype CellRangeSelector {select: range A1:K*;}
+
 	
-	
+	//stop_lat/stop_lon must be a geographic coordinates between -90 and 90, including upper/lower bounds
 	valuetype Coordinates oftype decimal{ constraints: [Angleconstraint]; }
-	constraint Angleconstraint oftype RangeConstraint{
-		lowerBound: -90;
-		upperBound: 90;
-	}
+	constraint Angleconstraint oftype RangeConstraint{ lowerBound: -90; upperBound: 90; }
+
+
+	//Only keep stops from zone 2001
 	valuetype zone_id oftype integer{ constraints:[only2001];}
-	constraint only2001 oftype RangeConstraint { lowerBound: 2001; upperBound:2001; }
+	constraint only2001 oftype RangeConstraint { lowerBound: 2001; upperBound: 2001; }
 
 
-
+	//Use fitting SQLite types (e.g., BIGINT, TEXT or FLOAT) for all columns & Drop rows containing invalid data
+	//stop_name must be a text
 	block GTFSTableInterpreter oftype TableInterpreter {
 		header: true;
 		columns: [
@@ -49,8 +59,7 @@ pipeline GTFSPipeline {
 		];
 	}
 
-	
-
+	//Write data into a SQLite database called “gtfs.sqlite”, in the table “stops”
 	block GTFSLoader oftype SQLiteLoader {
 		table: "stops";
 		file: "gfts.sqlite";
