@@ -1,0 +1,97 @@
+pipeline GTFSPipeline {
+
+	GTFSExtractor
+		-> ZipArchiveInterpreter
+		-> DataFilePicker
+
+        -> GTFSTextFileInterpreter
+        -> GTFSTextRangeSelector
+        -> GTFSCSVInterpreter
+		-> ColumnDataSelector
+        -> GTFSColumnDeleter
+        -> GTFSTableInterpreter
+        -> GTFSLoader;
+
+	block GTFSExtractor oftype HttpExtractor {
+		url: "https://gtfs.rhoenenergie-bus.de/GTFS.zip";
+	}
+
+    block ZipArchiveInterpreter oftype ArchiveInterpreter { archiveType: "zip";}
+    block DataFilePicker oftype FilePicker { path: "/stops.txt";}
+    
+    
+	
+
+	block GTFSTextFileInterpreter oftype TextFileInterpreter {
+		encoding: "ASCII";
+
+	}
+
+	block GTFSTextRangeSelector oftype TextRangeSelector {
+        lineFrom: 7;
+        lineTo: 483;
+    }
+
+	block GTFSCSVInterpreter oftype CSVInterpreter {
+		enclosing: '"'; 
+		enclosingEscape: '"';
+	}
+	block ColumnDataSelector oftype CellRangeSelector {select: range A1:K*;}
+	
+	
+	
+	block GTFSColumnDeleter oftype ColumnDeleter{
+		 delete: [column D, column E, column F, column Q, column H, column I, column J, column K, column L, column N, column O, column P, column Q, column R, column S, column T, column U, column V, column X, column Y, column Z, 
+        column AA, column AB, column AC, column AD, column AE, column AF, column AH, column AI, column AJ, column AK, column AL, column AM, column AN, column AO, column AP, column AR, column AS, column AT, column AU, column AV, column AW, column AX, column AY, column AZ, 
+        column BB, column BC, column BD, column BE, column BF, column BQ, column BH, column BI, column BJ, column BL, column BM, column BM, column BQ, column BR, column BS, column BT, column BV, column BW, column BX, column BY, column BZ, 
+        column CA, column CB, column CC, column CD, column CE];
+	}
+	
+
+	
+	//block NameHeaderWriter oftype CellWriter {
+	//	at: range A6:J6;
+	  //  write: ["date", "CIN", "name", "petrol", "diesel", "gas", "electro", "hybrid", "pluginHybrid", "others"];
+        
+	//}
+	valuetype CIN oftype text{
+		constraints: [MaxCINLenght];
+	}
+	constraint MaxCINLenght oftype LengthConstraint{
+		minLength: 5;
+		maxLength: 5;
+	}
+
+	valuetype Positve_Integer oftype integer{
+		constraints: [Onlypositiv];
+
+	}
+	constraint Onlypositiv oftype RangeConstraint{
+		lowerBound:0;
+		lowerBoundInclusive: false;
+	}
+
+
+	block GTFSTableInterpreter oftype TableInterpreter {
+		header: false;
+		columns: [
+			"date" oftype text,
+			"CIN" oftype CIN,
+			"name" oftype text,
+			"petrol" oftype Positve_Integer,
+			"diesel" oftype Positve_Integer,
+			"gas" oftype Positve_Integer,
+			"electro" oftype Positve_Integer,
+			"hybrid" oftype Positve_Integer,
+			"plugInHybrid" oftype Positve_Integer,
+			"others" oftype Positve_Integer
+		];
+	}
+
+	
+
+	block GTFSLoader oftype SQLiteLoader {
+		table: "GTFS";
+		file: "GTFS.sqlite";
+	}
+}
