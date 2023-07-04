@@ -32,6 +32,8 @@ pipeline GTFSPipeline {
 		lowerBound: -90;
 		upperBound: 90;
 	}
+	valuetype zone_id oftype integer{ constraints:[only2001];}
+	constraint only2001 oftype RangeConstraint { lowerBound: 2001; upperBound:2001; }
 
 
 
@@ -42,7 +44,7 @@ pipeline GTFSPipeline {
 			"stop_name" oftype text,
 			"stop_lat" oftype Coordinates,
 			"stop_lon" oftype Coordinates,
-			"zone_id" oftype integer,
+			"zone_id" oftype zone_id,
 			
 		];
 	}
