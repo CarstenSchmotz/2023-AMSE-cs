@@ -9,14 +9,6 @@ pipeline GTFSPipeline {
         -> GTFSLoader;
 
 
-
-
-
-
-
-
-
-
 	block GTFSExtractor oftype HttpExtractor {
 		url: "https://gtfs.rhoenenergie-bus.de/GTFS.zip";
 	}
