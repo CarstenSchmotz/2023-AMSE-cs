@@ -53,7 +53,7 @@ pipeline GTFSPipeline {
 
 	//Write data into a SQLite database called “gtfs.sqlite”, in the table “stops”
 	block GTFSLoader oftype SQLiteLoader {
-		table: "gfts";
-		file: "gfts.sqlite";
+		table: "stops";
+		file: "gtfs.sqlite";
 	}
 }
