@@ -20,7 +20,7 @@ pipeline GTFSPipeline {
        
 	
 	//stop_name must maintain german umlauts
-	block GTFSTextFileInterpreter oftype TextFileInterpreter {}/
+	block GTFSTextFileInterpreter oftype TextFileInterpreter {}
 	block GTFSCSVInterpreter oftype CSVInterpreter {
 		enclosing: '"'; 
 		enclosingEscape: '"';
