@@ -24,8 +24,6 @@ pipeline GTFSPipeline {
 	block GTFSCSVInterpreter oftype CSVInterpreter {
 		enclosing: '"'; 
 		enclosingEscape: '"';
-		//delimiter: ",";
-        //enclosing: '"';
 	}
 
 	
