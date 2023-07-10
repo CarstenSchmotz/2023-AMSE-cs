@@ -45,7 +45,6 @@ pipeline GTFSPipeline {
 			"stop_lat" oftype Coordinates,
 			"stop_lon" oftype Coordinates,
 			"zone_id" oftype zone_id,
-			
 		];
 	}
 
